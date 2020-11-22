@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block site_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-preview">
+                    {% for post in object_list %}
+                        <a href="post.html">
+                            <h2 class="post-title">
+                                {{ post.title }}
+                            </h2>
+                            <h3 class="post-subtitle">
+                                {{ post.sub_title }}
+                            </h3>
+                        </a>
+                        <p class="text">
+                            {{ post.body }}
+                        </p>
+                        <p class="post-meta">Posted by
+                            <a href="#">{{ post.author.first_name }} {{ post.author.last_name }}</a>
+                            on September 24, 2019</p>
+                        <hr>
+                    {% endfor %}
+                </div>
+                <!-- Pager -->
+                <div class="clearfix">
+                    <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+{% endblock site_content %}
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{ post.title }}</h1>
+<small>By: {{ post.author.first_name }} {{ post.author.last_name }}</small><br/>
+<hr>
+<br/>
+{{ post.body }}
+<br/><br/>
+<a href="{% url 'home' %}">Back</a>
+</body>
+</html>
