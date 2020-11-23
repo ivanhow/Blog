@@ -2,12 +2,14 @@
 {% load static %}
 
 {% block site_content %}
+    <!-- Page Header -->
+{% include 'common/header_home.html' %}
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="post-preview">
                     {% for post in object_list %}
-                        <a href="post.html">
+                        <a href="{% url 'article-detail' post.pk %}">
                             <h2 class="post-title">
                                 {{ post.title }}
                             </h2>
