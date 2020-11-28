@@ -1,48 +1,30 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}My Blog | {{ post.title }}{% endblock title %}
 
 {% block site_content %}
     <!-- Page Header -->
-{% include 'common/header.html' %}
+    {% include 'common/header.html' %}
     <!-- Post Content -->
     <article>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <p>{{ post.body }}</p>
-
-
                     <a href="#">
                         <img class="img-fluid" src="img/post-sample-image.jpg" alt="">
                     </a>
                     <span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
+                    <hr>
+                    <br/>
+                    <!-- Back -->
+                    <div class="clearfix">
+                        <a class="btn btn-primary float-right" href="{% url 'home' %}">&#8592 Back</a>
+                    </div>
                 </div>
             </div>
         </div>
     </article>
-
     <hr>
+
 {% endblock site_content %}
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>{{ post.title }}</h1>
-<small>By: {{ post.author.first_name }} {{ post.author.last_name }}</small><br/>
-<hr>
-<br/>
-{{ post.body }}
-<br/><br/>
-<a href="{% url 'home' %}">Back</a>
-</body>
-</html>
