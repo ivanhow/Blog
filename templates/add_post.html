@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}My Blog | Add Post {% endblock title %}
+
+{% block site_content %}
+    <!-- Page Header -->
+    {% include 'common/header.html' %}
+    <!-- Post Form -->
+
+    <div class="container">
+        <h1>Add post</h1>
+        <div class="form-group">
+            <form method="POST" action="{% url 'add-post' %}">
+                <p>
+                    <label for="{{ form.title.id_for_label }}">Title</label>
+                    {{ form.title }}
+                </p>
+                <p>
+                    <label for="{{ form.sub_title.id_for_label }}">Sub Title</label>
+                    {{ form.sub_title }}
+                </p>
+
+                <p>
+                    <label for="{{ form.author.id_for_label }}">Author</label>
+                    {{ form.author }}
+                </p>
+                <p>
+                    <label for="{{ form.body.id_for_label }}">Post text</label>
+                    {{ form.body }}
+                </p>
+                {% csrf_token %}
+                <input class="btn btn-primary" type="submit" value="Create">
+            </form>
+        </div>
+    </div>
+{% endblock site_content %}
