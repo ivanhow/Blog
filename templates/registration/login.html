@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}My Blog | Log In {% endblock title %}
+
+{% block site_content %}
+    <!-- Page Header -->
+    {% include 'common/header.html' %}
+    <!-- Post Form -->
+
+    <div class="container">
+        <h1>Log In</h1>
+        <div class="form-group">
+            <form method="POST" action="{% url 'login' %}">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <input class="btn btn-primary" type="submit" value="Log In">
+            </form>
+        </div>
+    </div>
+{% endblock site_content %}

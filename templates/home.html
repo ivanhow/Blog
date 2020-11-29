@@ -4,7 +4,7 @@
 
 {% block site_content %}
     <!-- Page Header -->
-{% include 'common/header_home.html' %}
+    {% include 'common/header_home.html' %}
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
@@ -19,11 +19,11 @@
                             </h3>
                         </a>
                         <p class="text">
-                            {{ post.body }}
+                            {{ post.body | slice:":200" }}
                         </p>
                         <p class="post-meta">Posted by
                             <a href="#">{{ post.author.first_name }} {{ post.author.last_name }}</a>
-                            on September 24, 2019</p>
+                            on {{ post.post_date }}</p>
                         <hr>
                     {% endfor %}
                 </div>

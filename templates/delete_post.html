@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}My Blog | Delete Post {% endblock title %}
+
+{% block site_content %}
+    <!-- Page Header -->
+    {% include 'common/header_details.html' %}
+    <!-- Post Form -->
+    {% if user.is_authenticated %}
+        <div class="container">
+            <h1>Delete post</h1><br/>
+            <div class="form-group">
+                <form method="POST" action="{% url 'article-delete' post.pk %}">
+                    <strong>Are you sure?</strong><br/><br/>
+                    {% csrf_token %}
+                    <input class="btn btn-primary" type="submit" value="Delete">
+                </form>
+            </div>
+        </div>
+    {% endif %}
+{% endblock site_content %}

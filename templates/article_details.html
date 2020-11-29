@@ -4,7 +4,7 @@
 
 {% block site_content %}
     <!-- Page Header -->
-    {% include 'common/header.html' %}
+    {% include 'common/header_details.html' %}
     <!-- Post Content -->
     <article>
         <div class="container">
@@ -15,12 +15,19 @@
                         <img class="img-fluid" src="img/post-sample-image.jpg" alt="">
                     </a>
                     <span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
-                    <hr>
-                    <br/>
-                    <!-- Back -->
-                    <div class="clearfix">
-                        <a class="btn btn-primary float-right" href="{% url 'home' %}">&#8592 Back</a>
-                    </div>
+                    <!-- Edit & Delete -->
+                    {% if user.is_authenticated %}
+                        <br/>
+                        <hr><br/>
+                        <div class="clearfix">
+                            <a class="btn btn-primary float-right" href="{% url 'article-delete' post.pk %}">&#8595
+                                Delete</a>
+                            <a class="btn btn-primary float-left" href="{% url 'article-edit' post.pk %}">&#8593
+                                Edit</a>
+                        </div>
+                    {% endif %}
+
+
                 </div>
             </div>
         </div>
