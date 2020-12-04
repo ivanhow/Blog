@@ -7,10 +7,12 @@
     {% include 'common/header.html' %}
     <!-- Post Form -->
     {% if user.is_authenticated %}
+
         <div class="container">
             <h1>Add post</h1>
             <div class="form-group">
                 <form method="POST" action="{% url 'add-post' %}">
+                    {{ form.media }}
                     <p>
                         <label for="{{ form.title.id_for_label }}">Title</label>
                         {{ form.title }}
@@ -19,9 +21,8 @@
                         <label for="{{ form.sub_title.id_for_label }}">Sub Title</label>
                         {{ form.sub_title }}
                     </p>
-
                     <p>
-                        <label for="{{ form.author.id_for_label }}">Author</label>
+{#                        <label for="{{ form.author.id_for_label }}">Author</label>#}
                         {{ form.author }}
                     </p>
                     <p>
@@ -30,6 +31,9 @@
                     </p>
                     {% csrf_token %}
                     <input class="btn btn-primary" type="submit" value="Create">
+                    <script>var name = "{{ user.id }}"
+                            document.getElementById("user").value = name;
+                    </script>
                 </form>
             </div>
         </div>

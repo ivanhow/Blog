@@ -7,6 +7,7 @@ from app.models import Post
 
 
 class HomeView(ListView):
+    paginate_by = 5
     model = Post
     template_name = 'home.html'
     ordering = ['-post_date']
@@ -27,7 +28,6 @@ class UpdatePostView(UpdateView):
     model = Post
     form_class = PostForm
     template_name = 'edit_post.html'
-    # fields = ['title', 'sub_title', 'body'] TODO Remove author field?
 
 
 class DeletePostView(DeleteView):

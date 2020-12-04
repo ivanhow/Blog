@@ -10,13 +10,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
-                    <p>{{ post.body }}</p>
+                    <p>{{ post.body|safe }}</p>
                     <a href="#">
                         <img class="img-fluid" src="img/post-sample-image.jpg" alt="">
                     </a>
                     <span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
                     <!-- Edit & Delete -->
-                    {% if user.is_authenticated %}
+                    {% if user.is_authenticated and user.id == post.author.id %}
                         <br/>
                         <hr><br/>
                         <div class="clearfix">
@@ -26,8 +26,6 @@
                                 Edit</a>
                         </div>
                     {% endif %}
-
-
                 </div>
             </div>
         </div>

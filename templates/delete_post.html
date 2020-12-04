@@ -6,7 +6,7 @@
     <!-- Page Header -->
     {% include 'common/header_details.html' %}
     <!-- Post Form -->
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated and user.id == post.author.id %}
         <div class="container">
             <h1>Delete post</h1><br/>
             <div class="form-group">

@@ -6,11 +6,12 @@
     <!-- Page Header -->
     {% include 'common/header_details.html' %}
     <!-- Post Form -->
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated and user.id == post.author.id %}
         <div class="container">
             <h1>Update post</h1>
             <div class="form-group">
                 <form method="POST" action="{% url 'article-edit' post.pk %}">
+                    {{ form.media }}
                     <p>
                         <label for="{{ form.title.id_for_label }}">Title</label>
                         {{ form.title }}
@@ -19,14 +20,13 @@
                         <label for="{{ form.sub_title.id_for_label }}">Sub Title</label>
                         {{ form.sub_title }}
                     </p>
-
                     <p>
                         <label for="{{ form.author.id_for_label }}">Author</label>
                         {{ form.author }}
                     </p>
                     <p>
                         <label for="{{ form.body.id_for_label }}">Post text</label>
-                        {{ form.body }}
+                        {{ form.body|safe }}
                     </p>
                     {% csrf_token %}
                     <input class="btn btn-primary float-left" type="submit" value="Update">
