@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}My Blog | Update Profile {% endblock title %}
+
+{% block site_content %}
+    <!-- Page Header -->
+    {% include 'common/header.html' %}
+    <!-- Post Form -->
+
+    <div class="container">
+        <h1>Edit Settings</h1>
+        <div class="form-group">
+            <form method="POST" action="{% url 'edit_profile' %}">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <input class="btn btn-primary" type="submit" value="Update Profile">
+            </form>
+        </div>
+    </div>
+{% endblock site_content %}

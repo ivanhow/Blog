@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}My Blog | User Profile {% endblock title %}
+
+{% block site_content %}
+    <!-- Page Header -->
+    {% include 'common/header.html' %}
+    <!-- Profile -->
+
+    <div class="container">
+        <h1>User Profile</h1>
+        <div class="card mb-3">
+            <div class="row no-gutters">
+                <div class="col-md-2">
+                    {% if page_user.profile_image %}
+                    <img src="{{ page_user.profile_image.url }}" class="card-img" alt="profile pic">
+                    {% else %}
+                    <img src="{% static 'img/blank-profile-picture-973460_640.png' %}" class="card-img" alt="profile pic">
+                    {% endif %}
+                </div>
+                <div class="col-md-10">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ page_user.user.first_name }} {{ page_user.user.last_name }}</h5>
+                        {% if page_user.website_url %}
+                        <p class="card-text"><small class="text-muted">
+                            <a href="{{ page_user.website_url }}">Website</a> </small>
+                        </p>
+                        {% endif %}
+                        <p class="card-text">{{ page_user.biography }}</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <hr>
+{% endblock site_content %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}My Blog | Edit Profile {% endblock title %}
+
+{% block site_content %}
+    <!-- Page Header -->
+    {% include 'common/header.html' %}
+    <!-- Post Form -->
+    {% if user.is_authenticated %}
+
+        <div class="container">
+            <h1>Edit Profile</h1>
+            <div class="form-group">
+                <form method="POST" action="{% url 'edit_profile_page' userprofile.id %}">
+                    <p>
+                        <label for="{{ form.biography.id_for_label }}">Biography</label>
+                        {{ form.biography }}
+                    </p>
+                    <p>
+                        <label for="{{ form.profile_image.id_for_label }}">Profile Image</label>
+                        {{ form.profile_image }}
+                    </p>
+                    <p>
+                        <label for="{{ form.post_image.id_for_label }}">Post Image</label>
+                        {{ form.post_image }}
+                    </p>
+                    <p>
+                        <label for="{{ form.website_url.id_for_label }}">Website</label>
+                        {{ form.website_url }}
+                    </p>
+                    {% csrf_token %}
+                    <input class="btn btn-primary" type="submit" value="Update">
+                </form>
+            </div>
+        </div>
+    {% endif %}
+{% endblock site_content %}

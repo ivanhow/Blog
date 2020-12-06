@@ -10,11 +10,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
+                    {% if post.post_image %}
+                        <img class="img-fluid" src="{{ post.post_image.url }}" alt="">
+                    {% endif %}
                     <p>{{ post.body|safe }}</p>
-                    <a href="#">
-                        <img class="img-fluid" src="img/post-sample-image.jpg" alt="">
-                    </a>
-                    <span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
+
                     <!-- Edit & Delete -->
                     {% if user.is_authenticated and user.id == post.author.id %}
                         <br/>
