@@ -4,10 +4,9 @@ from django.shortcuts import get_object_or_404
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.urls import reverse_lazy
-from django.views.generic import DetailView
-
+from django.views.generic import DetailView, CreateView
 from app.models import UserProfile
-from users.forms import SignUpForm, EditProfileForm
+from users.forms import SignUpForm, EditProfileForm, EditProfilePageForm, CreateProfilePageForm
 
 
 class UserRegisterView(generic.CreateView):
@@ -30,7 +29,7 @@ class ProfilePageView(DetailView):
     template_name = 'registration/user_profile.html'
 
     def get_context_data(self, *args, **kwargs):
-        users = UserProfile.objects.all()
+        # users = UserProfile.objects.all()
         context = super(ProfilePageView, self).get_context_data(*args, **kwargs)
 
         page_user = get_object_or_404(UserProfile, id=self.kwargs['pk'])
@@ -38,8 +37,20 @@ class ProfilePageView(DetailView):
         return context
 
 
-class EditProfilePageView(generic.UpdateView):
+class CreateProfilePageView(CreateView):  # Creates user profile page
     model = UserProfile
+    form_class = CreateProfilePageForm
+    template_name = 'registration/create_profile_page.html'
+
+    def form_valid(self, form):  # fills in the current user when logged
+        form.instance.user = self.request.user
+        return super(CreateProfilePageView, self).form_valid(form)
+
+
+class EditProfilePageView(generic.UpdateView):
+    form_class = EditProfilePageForm
     template_name = 'registration/edit_profile_page.html'
-    fields = ['biography', 'profile_image', 'website_url']
     success_url = reverse_lazy('home')
+
+    def get_object(self, queryset=None):
+        return self.request.user.userprofile

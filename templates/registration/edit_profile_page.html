@@ -11,7 +11,8 @@
         <div class="container">
             <h1>Edit Profile</h1>
             <div class="form-group">
-                <form method="POST" action="{% url 'edit_profile_page' userprofile.id %}">
+
+                <form method="POST" action="{% url 'edit_profile_page' user.userprofile.id %}">
                     <p>
                         <label for="{{ form.biography.id_for_label }}">Biography</label>
                         {{ form.biography }}
@@ -21,9 +22,6 @@
                         {{ form.profile_image }}
                     </p>
                     <p>
-                        <label for="{{ form.post_image.id_for_label }}">Post Image</label>
-                        {{ form.post_image }}
-                    </p>
                     <p>
                         <label for="{{ form.website_url.id_for_label }}">Website</label>
                         {{ form.website_url }}

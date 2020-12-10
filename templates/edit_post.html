@@ -10,7 +10,7 @@
         <div class="container">
             <h1>Update post</h1>
             <div class="form-group">
-                <form method="POST" action="{% url 'article-edit' post.pk %}">
+                <form method="POST" action="{% url 'article-edit' post.pk %}" enctype="multipart/form-data">
                     {{ form.media }}
                     <p>
                         <label for="{{ form.title.id_for_label }}">Title</label>
@@ -21,7 +21,10 @@
                         {{ form.sub_title }}
                     </p>
                     <p>
-                        <label for="{{ form.author.id_for_label }}">Author</label>
+                        <label for="{{ form.post_image.id_for_label }}">Post Image</label>
+                        {{ form.post_image }}
+                    </p>
+                    <p>
                         {{ form.author }}
                     </p>
                     <p>

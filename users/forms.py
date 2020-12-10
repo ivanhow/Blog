@@ -35,3 +35,25 @@ class EditProfileForm(UserChangeForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email')
+
+
+class CreateProfilePageForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('biography', 'profile_image', 'website_url')  # Hide user choice
+
+        widgets = {
+            'biography': forms.Textarea(attrs={'class': 'form-control'}),
+            'website_url': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+
+class EditProfilePageForm(UserChangeForm):
+    biography = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    profile_image = forms.ImageField()
+    website_url = forms.CharField(max_length=100,
+                                widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+    class Meta:
+        model = UserProfile
+        fields = ('biography', 'profile_image', 'website_url')
