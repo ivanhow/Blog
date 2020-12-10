@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}My Blog | Add Profile {% endblock title %}
+
+{% block site_content %}
+    <!-- Page Header -->
+    {% include 'common/header.html' %}
+    <!-- Post Form -->
+    {% if user.is_authenticated %}
+
+        <div class="container">
+            <h1>Add Profile</h1>
+            <div class="form-group">
+                <form method="POST" action="{% url 'create_profile_page' %}" enctype="multipart/form-data">
+                    {{ form.as_p }}
+                    {% csrf_token %}
+                    <input class="btn btn-primary" type="submit" value="Create Profile">
+                </form>
+            </div>
+        </div>
+    {% endif %}
+{% endblock site_content %}
